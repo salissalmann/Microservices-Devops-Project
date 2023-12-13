@@ -2,7 +2,7 @@ version: '3'
 
 services:
   appointments_service:
-    image: salissalman/appointments-service:2b9309a2982fc8be0ad720d3cc42446d3ba10117
+    image: salissalman/appointments-service:c7464968de05c7b32729efc35bcda217bd7f5264
     ports:
       - "7070:7070"
     networks:
