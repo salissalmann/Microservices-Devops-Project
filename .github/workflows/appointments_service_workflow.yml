@@ -34,17 +34,14 @@ jobs:
       - name: Update Docker Compose
         run: |
           sed -i "s|image: salissalman/appointments-service:[0-9a-f]\+|image: salissalman/appointments-service:${{ github.sha }}|" docker-compose.yml
-                
-      - name: Configure Git
+
+      - name: Configure Git and Commit
         run: |
-          git config --global user.email "i200489@nu.edu.pk"
           git config --global user.name "Salis Salman"
-      
-      - name: Commit and Push Changes
-        run: |
-          echo ${{ secrets.AUTH_TOKEN }}
+          git config --global user.email "i200489@nu.edu.pk"
+          git config --global user.username "salissalmann"
+          git config --global user.password "Salis2002$"
           git add .
           git commit -m "Update appointments-service image tag to ${{ github.sha }}"
-          git remote add origin_with_token https://${{ secrets.AUTH_TOKEN }}@github.com/${{ github.repository }}.git
-          git push origin_with_token HEAD:main
+          git push origin main      
         
