@@ -32,7 +32,7 @@ jobs:
 
       - name: Update Image on Docker Compose
         run: |
-          sed -i "s|image: salissalman/doctors_service:[0-9a-f]\+|image: salissalman/doctors-service:${{ github.sha }}|" docker-compose.yml
+          sed -i "s|image: salissalman/doctors-service:[0-9a-f]\+|image: salissalman/doctors-service:${{ github.sha }}|" docker-compose.yml
 
       - name: Commit and Push Changes
         run: |        

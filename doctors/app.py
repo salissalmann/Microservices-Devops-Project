@@ -20,7 +20,5 @@ def getDoctor(id):
   id = int(id) - 1
   return jsonify(doctors[id])
 
-  ##
-
 if __name__ == "__main__":
   app.run(host="0.0.0.0",port=9090)
