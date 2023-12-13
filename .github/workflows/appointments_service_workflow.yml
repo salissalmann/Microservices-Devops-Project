@@ -13,22 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build and Push Docker Image
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./appointments
           push: true
-          tags: salissalman/appointments-service:${{ github.sha }}
-
-      - name: Update Docker Compose file
-        run: |
-          echo "${{ secrets.CR_PAT }}" | docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          sed -i "s#image:.*#image: salissalman/appointments-service:${{ github.sha }}#" docker-compose.yml
-          git add docker-compose.yml
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "Update Appointments Service image tag"
-          git push
+          tags: ${{ secrets.DOCKER_USERNAME }}/appointments-service:${{ github.sha }}
