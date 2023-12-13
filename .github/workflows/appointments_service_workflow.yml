@@ -1,0 +1,33 @@
+name: Appointments Service CI/CD
+
+on:
+  pull_request:
+    paths:
+      - 'appointments/*'
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: ../../appointments
+          push: true
+          tags: ghcr.io/salissalman/appointments-service:${{ github.sha }}
+
+      - name: Update Docker Compose file
+        run: |
+          sed -i "s#image:.*#image: ghcr.io/salissalman/appointments-service:${{ github.sha }}#" docker-compose.yml
+          git add docker-compose.yml
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Update Appointments Service image tag"
+          git push
