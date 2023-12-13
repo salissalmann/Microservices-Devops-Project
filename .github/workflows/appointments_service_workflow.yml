@@ -42,6 +42,9 @@ jobs:
       
       - name: Commit and Push Changes
         run: |
+          echo ${{ secrets.AUTH_TOKEN }}
           git add .
           git commit -m "Update appointments-service image tag to ${{ github.sha }}"
-          git push https://${{ secrets.AUTH_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          git remote add origin_with_token https://${{ secrets.AUTH_TOKEN }}@github.com/${{ github.repository }}.git
+          git push origin_with_token HEAD:main
+        
