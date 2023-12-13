@@ -24,21 +24,17 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build
+      - name: Build and Push
         run: docker build -t salissalman/appointments-service:${{ github.sha }} ./appointments
-        
-      - name: Push
-        run: docker push salissalman/appointments-service:${{ github.sha }}
+             docker push salissalman/appointments-service:${{ github.sha }}
 
+        
       - name: Update Image on Docker Compose
         run: |
           sed -i "s|image: salissalman/appointments-service:[0-9a-f]\+|image: salissalman/appointments-service:${{ github.sha }}|" docker-compose.yml
 
       - name: Commit and Push Changes
-        run: |
-          git config --local user.email "i200489@nu.edu.pk"
-          git config --local user.name "Salis Salman"
-          git config --local user.password "${{ secrets.AUTH_TOKEN }}"
+        run: |        
           git add .
           git commit -m "Update docker-compose.yml"
           git push origin main
