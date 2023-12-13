@@ -44,6 +44,4 @@ jobs:
         run: |
           git add .
           git commit -m "Update appointments-service image tag to ${{ github.sha }}"
-          git remote add origin_with_token https://salissalmann:${{ secrets.AUTH_TOKEN }}@github.com/${{ github.repository }}.git
-          git push origin_with_token HEAD:main
-        
+          git push https://${{ secrets.AUTH_TOKEN }}@github.com/${{ github.repository }} HEAD:main
