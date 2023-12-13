@@ -35,14 +35,13 @@ jobs:
         run: |
           sed -i "s|image: salissalman/appointments-service:[0-9a-f]\+|image: salissalman/appointments-service:${{ github.sha }}|" docker-compose.yml
                 
-      - name: Set up Git
+      - name: Configure Git
         run: |
-          git config --global user.name "salissalmann"
-          git config --global user.email "i200489@nu.edu.pk"
-          git remote set-url origin "https://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@github.com/${{ github.repository }}.git"
-    
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+  
       - name: Commit and Push Changes
         run: |
-          git add docker-compose.yml
-          git commit -m "Update appointments-service image tag to ${{ github.sha }}"
-          git push origin HEAD:main
+          git add .
+          git commit -m "Update Docker Compose to ${GITHUB_SHA}"
+          git push https://${{ secrets.AUTH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
