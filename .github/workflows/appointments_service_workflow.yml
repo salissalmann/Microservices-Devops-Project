@@ -35,11 +35,11 @@ jobs:
         run: |
           sed -i "s|image: salissalman/appointments-service:[0-9a-f]\+|image: salissalman/appointments-service:${{ github.sha }}|" docker-compose.yml
                 
-          name: Set up Git
-          run: |
-            git config --global user.name "salissalmann"
-            git config --global user.email "i200489@nu.edu.pk"
-            git remote set-url origin "https://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@github.com/${{ github.repository }}.git"
+      - name: Set up Git
+        run: |
+          git config --global user.name "salissalmann"
+          git config --global user.email "i200489@nu.edu.pk"
+          git remote set-url origin "https://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@github.com/${{ github.repository }}.git"
     
       - name: Commit and Push Changes
         run: |
