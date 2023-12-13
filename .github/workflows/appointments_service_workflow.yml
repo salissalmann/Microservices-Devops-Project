@@ -31,16 +31,13 @@ jobs:
         run: docker push salissalman/appointments-service:${{ github.sha }}
 
 
-      - name: Update Docker Compose
-        run: |
-          sed -i "s|image: salissalman/appointments-service:[0-9a-f]\+|image: salissalman/appointments-service:${{ github.sha }}|" docker-compose.yml
-
       - name: Login to Git add, commit and push
         uses: actions/checkout@v2
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          sed -i "s|image: salissalman/appointments-service:[0-9a-f]\+|image: salissalman/appointments-service:${{ github.sha }}|" docker-compose.yml
           git add .
           git commit -m "Update docker-compose.yml"
       - name: Push changes
