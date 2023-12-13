@@ -6,6 +6,7 @@ const PORT = 3000;
 const HOST = '0.0.0.0';
 
 const axios = require('axios');
+require('dotenv').config();
 
 // App
 const app = express();
@@ -26,7 +27,6 @@ app.get('/api/doctors', async (req, res) => {
     const doctors = response.data;
     res.json(doctors);
   } catch (error) {
-    console.error('Error fetching doctors:', error);
     res.status(500).json({ error: 'Could not fetch doctors' });
   }
 });
@@ -38,7 +38,6 @@ app.get('/api/appointments', async (req, res) => {
     const appointments = response.data;
     res.json(appointments);
   } catch (error) {
-    console.error('Error fetching appointments:', error);
     res.status(500).json({ error: 'Could not fetch appointments' });
   }
 });
