@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  appointments_service:
+    build: ./appointments
+    ports:
+      - "7070:7070"
+    networks:
+      - backend_network
+
+  doctors_service:
+    build: ./doctors
+    ports:
+      - "9090:9090"
+    networks:
+      - backend_network
+
+  frontend_service:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - backend_network
+    environment:
+      - DOCTORS_SERVICE_URL=doctors_service:9090
+      - APPOINTMENTS_SERVICE_URL=appointments_service:7070
+
+networks:
+  backend_network:
