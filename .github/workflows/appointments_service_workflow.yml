@@ -1,12 +1,12 @@
 name: Appointments Service CI/CD
 
 on:
+  push:
+    paths:
+      - 'appointments/**'
   pull_request:
     paths:
-      - 'appointments/*'
-  push:
-    branches:
-      - main
+      - 'appointments/**'
 
 jobs:
   build:
