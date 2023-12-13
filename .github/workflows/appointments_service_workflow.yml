@@ -4,9 +4,13 @@ on:
   push:
     paths:
       - 'appointments/**'
+    branches:
+      - main
   pull_request:
     paths:
       - 'appointments/**'
+    branches:
+      - main
 
 jobs:
   build:
