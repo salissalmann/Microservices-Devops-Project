@@ -19,15 +19,14 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
         with:
-          context: ./appointments 
+          context: ./appointments
           push: true
-          tags: ghcr.io/salissalmann/appointments-service:${{ github.sha }}
-       
+          tags: salissalman/appointments-service:${{ github.sha }}
+
       - name: Update Docker Compose file
         run: |
-          //login to docker hub
-          docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}          
-          sed -i "s#image:.*#image: ghcr.io/salissalman/appointments-service:${{ github.sha }}#" docker-compose.yml
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          sed -i "s#image:.*#image: salissalman/appointments-service:${{ github.sha }}#" docker-compose.yml
           git add docker-compose.yml
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
