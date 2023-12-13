@@ -22,6 +22,7 @@ app.get('/hello', (req, res) => {
 // Define your API endpoints and routes here
 app.get('/api/doctors', async (req, res) => {
   let url  = process.env.DOCTORS_SERVICE_URL;
+  console.log(url);
   try {
     const response = await axios.get(String(`http://${url}/doctors`));
     const doctors = response.data;
@@ -33,6 +34,7 @@ app.get('/api/doctors', async (req, res) => {
 
 app.get('/api/appointments', async (req, res) => {
   let url  = process.env.APPOINTMENTS_SERVICE_URL;
+  console.log(url);
   try {
     const response = await axios.get(String(`http://${url}/appointments`));
     const appointments = response.data;
