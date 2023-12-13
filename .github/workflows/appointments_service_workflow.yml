@@ -41,10 +41,10 @@ jobs:
           git config --global user.name "Salis Salman"
           git config --global user.username "salissalmann"
           git config --global user.password "Salis2002$"
-          
+
             
       - name: Commit and Push Changes
         run: |
           git add .
           git commit -m "Update appointments-service image tag to ${{ github.sha }}"
-          git push origin main
+          git push https://salissalmann:${{ secrets.AUTH_TOKEN }}@${{ github.repository }} HEAD:main
