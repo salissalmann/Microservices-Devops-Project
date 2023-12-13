@@ -25,7 +25,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build
-        run: docker build -t salissalman/frontend-service:${{ github.sha }} ./doctors
+        run: docker build -t salissalman/frontend-service:${{ github.sha }} ./frontend
         
       - name: Push
         run: docker push salissalman/frontend-service:${{ github.sha }}
