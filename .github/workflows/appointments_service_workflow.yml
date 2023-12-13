@@ -39,7 +39,9 @@ jobs:
         run: |
           git config --global user.email "i200489@nu.edu.pk"
           git config --global user.name "Salis Salman"
+          git config --global user.username "salissalmann"
           git config --global user.password "Salis2002$"
+          
             
       - name: Commit and Push Changes
         run: |
