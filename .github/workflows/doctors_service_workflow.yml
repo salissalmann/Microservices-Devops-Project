@@ -29,3 +29,16 @@ jobs:
         
       - name: Push
         run: docker push salissalman/doctors-service:${{ github.sha }}
+
+      - name: Update Image on Docker Compose
+        run: |
+          sed -i "s|image: salissalman/doctors_service:[0-9a-f]\+|image: salissalman/doctors-service:${{ github.sha }}|" docker-compose.yml
+
+      - name: Commit and Push Changes
+        run: |        
+          git config --global user.email ${{ secrets.GH_EMAIL }}
+          git config --global user.name ${{ secrets.GH_NAME }}
+          git config --local user.password "${{ secrets.GITHUB_TOKEN }}"
+          git add .
+          git commit -m "Update docker-compose.yml"
+          git push origin main
