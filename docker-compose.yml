@@ -16,7 +16,7 @@ services:
       - backend_network
 
   frontend_service:
-    image: salissalman/frontend-service:5257819658ffa31ff6e8428de95ac136f7a992e7
+    image: salissalman/frontend-service:9313df7a89b29be39d2f2d7fd79e87055ff1e736
     ports:
       - "3000:3000"
     networks:

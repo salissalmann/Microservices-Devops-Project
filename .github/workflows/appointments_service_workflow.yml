@@ -41,5 +41,5 @@ jobs:
           git config --global user.name ${{ secrets.GH_NAME }}
           git config --local user.password "${{ secrets.GITHUB_TOKEN }}"
           git add .
-          git commit -m "Update docker-compose.yml"
+          git commit -m "Update docker-compose.yml By Appointments Service CI/CD"
           git push origin main
