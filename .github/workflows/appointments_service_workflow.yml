@@ -34,7 +34,7 @@ jobs:
       - name: Update Docker Compose
         run: |
           sed -i "s|image: salissalman/appointments-service:[0-9a-f]\+|image: salissalman/appointments-service:${{ github.sha }}|" docker-compose.yml
-          working-directory: ${{ github.workspace }}
+          working-directory: ${{ github.workspace }} && echo "Working Directory: $PWD"
 
       - name: Commit and Push Changes
         run: |
