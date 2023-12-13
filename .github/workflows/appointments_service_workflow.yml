@@ -2,6 +2,8 @@ name: Appointments Service CI/CD
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'appointments/**'
   pull_request:
