@@ -38,8 +38,6 @@ jobs:
       - name: Configure Git and Commit
         run: |
           gh auth login --with-token <<< "${{ secrets.AUTH_TOKEN }}"
-          git config --global user.name "Salis Salman"
-          git config --global user.email "i200489@nu.edu.pk"
-          git add docker-compose.yml
-          git commit -m "Update appointments-service image tag to ${{ github.sha }}"
-          git push origin main
+          echo "git config user.name $GITHUB_ACTOR"
+          git config user.name $GITHUB_ACTOR"
+          
