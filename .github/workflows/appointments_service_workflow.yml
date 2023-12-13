@@ -24,9 +24,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push
+      - name: Build Docker Image
         run: docker build -t salissalman/appointments-service:${{ github.sha }} ./appointments
-             docker push salissalman/appointments-service:${{ github.sha }}
+      
+      - name: Push to DockerHub
+        run: docker push salissalman/appointments-service:${{ github.sha }}
 
         
       - name: Update Image on Docker Compose
