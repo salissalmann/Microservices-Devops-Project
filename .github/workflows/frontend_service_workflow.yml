@@ -30,6 +30,9 @@ jobs:
       - name: Push
         run: docker push salissalman/frontend-service:${{ github.sha }}
 
+      - name: Stash local changes
+        run: git stash
+
       - name: Update Image on Docker Compose
         run: |
           sed -i "s|image: salissalman/frontend-service:[0-9a-f]\+|image: salissalman/frontend-service:${{ github.sha }}|" docker-compose.yml
@@ -40,7 +43,8 @@ jobs:
           git config --global user.name ${{ secrets.GH_NAME }}
           git config --local user.password "${{ secrets.GITHUB_TOKEN }}"
           git fetch origin main
-          git pull origin main
+          git pull origin main   
+          git stash apply --index
           git add .
           git commit -m "Update docker-compose.yml By FrontEnd Service CI/CD"
           git push origin main

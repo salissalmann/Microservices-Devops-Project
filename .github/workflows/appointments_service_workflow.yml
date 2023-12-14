@@ -30,7 +30,10 @@ jobs:
       - name: Push to DockerHub
         run: docker push salissalman/appointments-service:${{ github.sha }}
 
-        
+
+      - name: Stash local changes
+        run: git stash
+
       - name: Update Image on Docker Compose
         run: |
           sed -i "s|image: salissalman/appointments-service:[0-9a-f]\+|image: salissalman/appointments-service:${{ github.sha }}|" docker-compose.yml
@@ -42,6 +45,7 @@ jobs:
           git config --local user.password "${{ secrets.GITHUB_TOKEN }}"
           git fetch origin main
           git pull origin main
+          git stash apply --index
           git add .
           git commit -m "Update docker-compose.yml By Appointments Service CI/CD"
           git push origin main
