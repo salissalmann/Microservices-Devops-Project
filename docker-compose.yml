@@ -2,21 +2,21 @@ version: '3'
 
 services:
   appointments_service:
-    image: salissalman/appointments-service:075fa85854956171896c40f70adc2dd20005247e
+    image: salissalman/appointments-service:1a68f3fe012fe9f611f935895cff892816265d1e
     ports:
       - "7070:7070"
     networks:
       - backend_network
 
   doctors_service:
-    image: salissalman/doctors-service:075fa85854956171896c40f70adc2dd20005247e
+    image: salissalman/doctors-service:1a68f3fe012fe9f611f935895cff892816265d1e
     ports:
       - "9090:9090"
     networks:
       - backend_network
 
   frontend_service:
-    image: salissalman/frontend-service:e550ee5546c80c854f98482c6830101048445437
+    image: salissalman/frontend-service:1a68f3fe012fe9f611f935895cff892816265d1e
     ports:
       - "3000:3000"
     networks:
