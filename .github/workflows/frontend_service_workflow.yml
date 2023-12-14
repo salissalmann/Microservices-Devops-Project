@@ -43,4 +43,5 @@ jobs:
           git add .
           git commit -m "Update docker-compose.yml By FrontEnd Service CI/CD"
           git merge origin/main
+          git pull origin main
           git push origin main
