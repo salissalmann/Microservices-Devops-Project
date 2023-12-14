@@ -44,6 +44,19 @@ app.get('/api/appointments', async (req, res) => {
   }
 });
 
+app.get('/doctors/health', async (req, res) => {
+  let url  = process.env.DOCTORS_SERVICE_URL;
+  console.log(url);
+  try {
+    const response = await axios.get(String(`http://${url}/health`));
+    const doctors = response.data;
+    res.json(doctors);
+  } catch (error) {
+    res.status(500).json({ error: 'Could not fetch doctors' });
+  }
+})
+
+
 
 app.listen(PORT, HOST); 
 console.log(`Running on http://${HOST}:${PORT}`);
