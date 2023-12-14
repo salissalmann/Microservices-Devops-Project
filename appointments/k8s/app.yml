@@ -19,6 +19,16 @@ spec:
         image: salissalman/appointments-service:2b9309a2982fc8be0ad720d3cc42446d3ba10117
         ports:
         - containerPort: 7070
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 7070
+          initialDelaySeconds: 3
+          periodSeconds: 3
 ---
 apiVersion: v1
 kind: Service
@@ -32,4 +42,3 @@ spec:
     - protocol: TCP
       port: 7070
       targetPort: 7070
-      

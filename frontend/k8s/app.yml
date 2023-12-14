@@ -15,9 +15,17 @@ spec:
     spec:
       containers:
         - name: frontend-service
-          image: salissalman/frontend-service:c5caafdd59fe7f53225e8dd2c159501ee29b29c8
+          image: salissalman/frontend-service:f5bb676a4e155fd9faa7fdcda2b81f34356ed6fd
           ports:
             - containerPort: 3000
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
           env:
             - name: DOCTORS_SERVICE_URL
               value: doctors-service:9090

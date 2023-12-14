@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: doctors-service
-          image: salissalman/doctors-service:4ae8409b7058a54cc15f71d441589a3d03898462
+          image: salissalman/doctors-service:c5caafdd59fe7f53225e8dd2c159501ee29b29c8
           ports:
             - containerPort: 9090
           resources:
@@ -26,7 +26,6 @@ spec:
             httpGet:
               path: /health
               port: 9090
-              scheme: HTTP
             initialDelaySeconds: 3
             periodSeconds: 3
 
@@ -43,5 +42,3 @@ spec:
     - protocol: TCP
       port: 9090
       targetPort: 9090
-      nodePort: 30002
-  type: NodePort
