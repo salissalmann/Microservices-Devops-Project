@@ -9,7 +9,7 @@ services:
       - backend_network
 
   doctors_service:
-    image: salissalman/doctors-service:31e23dc67412ed60e1acb8c5e263879c7f98ff3e
+    image: salissalman/doctors-service:9e46d067c582a59df6dd573ffd1e26e5932e0164
     ports:
       - "9090:9090"
     networks:
