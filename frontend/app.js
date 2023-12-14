@@ -48,11 +48,10 @@ app.get('/doctors/health', async (req, res) => {
   let url  = process.env.DOCTORS_SERVICE_URL;
   console.log(url);
   try {
-    const response = await axios.get(String(`http://${url}/health`));
-    const doctors = response.data;
-    res.json(doctors);
+    const response = await axios.get(String(`http://${url}:9090/health`));
+    res.json(response , url);
   } catch (error) {
-    res.status(500).json({ error: 'Could not fetch doctors' });
+    res.status(500).json({ error: 'Could not fetch health' , url: url});
   }
 })
 

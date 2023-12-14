@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend-service
-          image: salissalman/frontend-service:e5b15ed8b6b3a368e974d9cbd41653bc629805fa
+          image: salissalman/frontend-service:c5caafdd59fe7f53225e8dd2c159501ee29b29c8
           ports:
             - containerPort: 3000
           env:
