@@ -3,14 +3,15 @@ kind: Deployment
 metadata:
   name: doctors-deployment
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      app: doctors
+      tier: backend
+      app: microservices
   template:
     metadata:
       labels:
-        app: doctors
+        tier: backend
+        app: microservices
     spec:
       containers:
         - name: doctors-service
@@ -24,9 +25,9 @@ metadata:
   name: doctors-service
 spec:
   selector:
-    app: doctors
+    tier: backend
+    app: microservices
   ports:
     - protocol: TCP
       port: 80
       targetPort: 9090
-  type: NodePort

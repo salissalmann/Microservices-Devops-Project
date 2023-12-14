@@ -3,22 +3,40 @@ kind: Deployment
 metadata:
   name: frontend-deployment
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      app: frontend
+      tier: frontend
+      app: microservices
   template:
     metadata:
       labels:
-        app: frontend
+        tier: frontend
+        app: microservices      
     spec:
       containers:
         - name: frontend-service
           image: salissalman/frontend-service:e5b15ed8b6b3a368e974d9cbd41653bc629805fa
           ports:
             - containerPort: 3000
+            
           env:
-            - name: APPOINTMENTS_SERVICE_URL
-              value: "$(kubectl get services appointments-service -o=jsonpath='{.spec.clusterIP}/{.spec.ports[0].nodePort}')"
             - name: DOCTORS_SERVICE_URL
-              value: "$(kubectl get services doctors-service -o=jsonpath='{.spec.clusterIP}/{.spec.ports[0].nodePort}')"
+              value: doctors-service:9090
+            - name: APPOINTMENTS_SERVICE_URL
+              value: appointments-service:7070
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  type: NodePort
+  selector:
+    tier: frontend
+    app: microservices
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      nodePort: 30001

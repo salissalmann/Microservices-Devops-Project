@@ -4,14 +4,15 @@ kind: Deployment
 metadata:
   name: appointments-deployment
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      app: appointments
+      tier: backend
+      app: microservices
   template:
     metadata:
       labels:
-        app: appointments
+        tier: backend
+        app: microservices
     spec:
       containers:
       - name: appointments-service
@@ -26,9 +27,9 @@ metadata:
   name: appointments-service
 spec:
   selector:
-    app: appointments
+    tier: backend
+    app: microservices
   ports:
     - protocol: TCP
       port: 7070
       targetPort: 7070
-  type: NodePort
