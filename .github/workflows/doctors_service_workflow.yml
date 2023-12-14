@@ -36,6 +36,7 @@ jobs:
 
       - name: Commit and Push Changes
         run: |        
+          sleep 20        
           git config --global user.email ${{ secrets.GH_EMAIL }}
           git config --global user.name ${{ secrets.GH_NAME }}
           git config --local user.password "${{ secrets.GITHUB_TOKEN }}"
