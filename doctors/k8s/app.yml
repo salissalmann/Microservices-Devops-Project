@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: doctors-service
-          image: salissalman/doctors-service:31e23dc67412ed60e1acb8c5e263879c7f98ff3e
+          image: salissalman/doctors-service:c5caafdd59fe7f53225e8dd2c159501ee29b29c8
           ports:
             - containerPort: 9090
           resources:
