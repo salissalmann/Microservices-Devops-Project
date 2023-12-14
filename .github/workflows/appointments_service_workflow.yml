@@ -45,7 +45,7 @@ jobs:
           git config --local user.password "${{ secrets.GITHUB_TOKEN }}"
           git fetch origin main
           git pull origin main
-          git stash apply --index
+          git stash pop
           git add .
           git commit -m "Update docker-compose.yml By Appointments Service CI/CD"
           git push origin main
